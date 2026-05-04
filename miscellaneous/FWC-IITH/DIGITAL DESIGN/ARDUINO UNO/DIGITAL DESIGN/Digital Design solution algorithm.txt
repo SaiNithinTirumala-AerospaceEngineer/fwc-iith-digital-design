@@ -1,0 +1,10 @@
+IEEE Hexa Decimal Inputs
+IEEE IC inputs read
+HExa to Decimal float format convert
+R1, R2
+R3=R1/r2
+FLOAT DECIMal
+read 
+input 
+HExadecimal conversion
+output lcd print

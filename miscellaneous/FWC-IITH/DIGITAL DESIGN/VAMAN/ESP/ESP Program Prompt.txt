@@ -1,0 +1,6 @@
+write a C++ void loop if statement code where the inpits will be 
+R1=(!X || Y || Z) && (X || !Y || !Z) && (!X || Y || !Z) && (!X && !Y && !Z || !X && Y && !Z || X && Y && !Z)
+R2=(!X && !Z) || (Y && !Z)
+and if:
+R1=R2
+the LED must glow and if not the LED should not glow 

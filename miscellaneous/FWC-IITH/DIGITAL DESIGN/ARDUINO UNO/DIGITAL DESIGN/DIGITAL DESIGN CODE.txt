@@ -1,0 +1,35 @@
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(4, 5, 6, 7, 8, 9, 10);
+
+void setup() {
+  lcd.begin(16, 2);  // Initialize the LCD with 16 columns and 2 rows
+  lcd.clear();       // Clear the LCD screen
+  
+  // Define the hexadecimal values for R1 and R2
+  float R1_hex = 0x42200000;
+  float R2_hex = 0xC1200000;
+  
+  // Convert hexadecimal values to floating-point numbers
+  float R1 = *(float*)&R1_hex;
+  float R2 = *(float*)&R2_hex;
+
+  // Perform division R3 = R1/R2
+  float R3 = R1 / R2;
+
+  // Display the values on the LCD
+  lcd.print("R1 = ");
+  lcd.print(R1, 8); // Display R1 as a floating-point number with 8 decimal places
+  lcd.setCursor(0, 1); // Move cursor to the second row
+  lcd.print("R2 = ");
+  lcd.print(R2, 8); // Display R2 as a floating-point number with 8 decimal places
+  delay(3000);       // Wait for 3 seconds
+  lcd.clear();       // Clear the LCD screen
+  
+  lcd.print("R3 = ");
+  lcd.print(R3, 8); // Display R3 as a floating-point number with 8 decimal places
+}
+
+void loop() {
+  // Nothing to loop here
+}

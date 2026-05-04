@@ -1,0 +1,57 @@
+code-1:
+//Blink program for onboard LED on esp32
+#include <Arduino.h>
+
+void setup() {
+  pinMode(2,OUTPUT);
+  // put your setup code here, to run once:
+}
+
+void loop() {
+  int X=1;
+  int Y=1;
+  int Z=1;
+  int R1=(X || Y || !Z) && (!X || Y || Z) && (X || Y || !Z) && (!X && !Y || X && Y && Z);
+  int R2=(!X && !Z) || (Y && !Z);
+  if(R1==R2){	
+    digitalWrite(2,HIGH);
+    delay(1000);
+    }
+  else{
+    digitalWrite(2,LOW);
+    delay(1000);
+    }
+
+  // put your main code here, to run repeatedly:
+}
+
+code-2:
+// Define the digital pins for LEDs
+const int LED_X = 2; // Assuming X is connected to pin 2
+const int LED_Y = 3; // Assuming Y is connected to pin 3
+const int LED_Z = 4; // Assuming Z is connected to pin 4
+const int LED_F = 5; // Output LED connected to pin 5
+
+void setup() {
+  // Initialize digital pins for LEDs
+  pinMode(LED_X, INPUT_PULLUP); // Using internal pull-up resistors
+  pinMode(LED_Y, INPUT_PULLUP);
+  pinMode(LED_Z, INPUT_PULLUP);
+  pinMode(LED_F, OUTPUT);
+}
+
+void loop() {
+  // Read the inputs from jumpers connected to power rails
+  int X = digitalRead(LED_X);
+  int Y = digitalRead(LED_Y);
+  int Z = digitalRead(LED_Z);
+
+  // Evaluate the boolean expression
+  int F = (!X && !Z) || (Y && Z);
+
+  // Display the output on LED connected to pin 5
+  digitalWrite(LED_F, F);
+
+  // Delay for stability
+  delay(100);
+}

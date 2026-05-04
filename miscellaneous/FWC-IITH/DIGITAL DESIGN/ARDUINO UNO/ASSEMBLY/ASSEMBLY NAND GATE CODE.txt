@@ -1,0 +1,121 @@
+AVR Assembly Code:
+.include "/sdcard/assembly/m328Pdef.inc"
+
+; Set pin 13 (PB5) as output
+SBI DDRB,5
+
+; Infinite loop
+start:
+    ; Read input from port D
+    in r16, PIND
+    mov r17, r16
+
+    ; Extract the relevant bits for NAND gate
+    andi r16, 0b00000100
+    LSR r16
+    LSR r16
+    ldi r18, 0b00000001
+    eor r16, r18
+
+    ; Move the result to r19
+    mov r19, r17
+    ldi r19, 0b00001000
+    LSR r19
+    LSR r19
+    LSR r19
+
+    ; Perform NAND operation
+    and r16, r19
+
+    ; Shift left five times
+    LSL r16
+    LSL r16
+    LSL r16
+    LSL r16
+    LSL r16
+
+    ; Output the result to pin 13 (PB5)
+    out PORTB, r16
+
+    ; Infinite loop
+    rjmp start
+
+C++ Code:
+// Define the digital pins for input A and B
+const int pinA = 2; // Digital pin 2 for input A
+const int pinB = 3; // Digital pin 3 for input B
+
+// Define the digital pin for the LED
+const int ledPin = 13; // Built-in LED pin on Arduino Uno
+
+void setup() {
+  // Set pin modes
+  pinMode(pinA, INPUT);
+  pinMode(pinB, INPUT);
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  // Read the input values
+  int inputA = digitalRead(pinA);
+  int inputB = digitalRead(pinB);
+  
+  // Compute the output Q based on the truth table
+  int outputQ = !(inputA && inputB); // NAND gate operation
+  
+  // Turn on/off the LED based on the output Q
+  digitalWrite(ledPin, outputQ);
+  
+  // Delay for stability
+  delay(100);
+}
+
+ASSEMBLY CODE - 2:
+; Include necessary files
+.include "/sdcard/assembly/m328Pdef.inc"
+
+; Define digital pins for input A and B
+.equ pinA, 3 ; Digital pin 3 for input A
+.equ pinB, 2 ; Digital pin 2 for input B
+
+; Define digital pin for the LED
+.equ ledPin, 5 ; Pin 13 (PB5) for LED
+
+; Set pin 13 (PB5) as output
+SBI DDRB, ledPin
+
+; Infinite loop
+start:
+    ; Read input from ports
+    IN r16, PIND
+    MOV r17, r16
+
+    ; Extract the relevant bits for NAND gate
+    ANDI r16, 0b00000100
+    LSR r16
+    LSR r16
+    LDI r18, 0b00000001
+    EOR r16, r18
+
+    ; Move the result to r19
+    MOV r19, r17
+    LDI r19, 0b00001000
+    LSR r19
+    LSR r19
+    LSR r19
+
+    ; Perform NAND operation
+    AND r16, r19
+
+    ; Shift left five times
+    LSL r16
+    LSL r16
+    LSL r16
+    LSL r16
+    LSL r16
+
+    ; Output the result to pin 13 (PB5)
+    OUT PORTB, r16
+
+    ; Infinite loop
+    RJMP start

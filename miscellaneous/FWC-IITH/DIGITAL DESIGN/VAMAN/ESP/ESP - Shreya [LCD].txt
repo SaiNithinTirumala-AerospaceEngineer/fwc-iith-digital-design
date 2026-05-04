@@ -1,0 +1,152 @@
+ESP LCD [VAMAN]:
+Solution:
+Concept:
+The time and frequency are the parameters that are inversely related.
+Calculation:
+Frequency mode
+The reading is obtained by the multiplication of frequency applied and input time.
+1000 = 1 sec × f
+f = 1000 Hz
+Period mode
+The reading is obtained by the multiplication of frequency applied and input time.
+The counter is 1000
+code:
+#include <WiFi.h>
+#include <WiFiUdp.h>
+#include <ArduinoOTA.h>
+#include <LiquidCrystal.h>
+
+#ifndef STASSID
+#define STASSID "Sunitha"  // Replace with your network credentials
+#define STAPSK  "1234567890"  
+#endif
+
+LiquidCrystal lcd(39, 35, 33, 32, 31, 30, 29, 28, 27, 26);
+
+const char* ssid = STASSID;
+const char* password = STAPSK;
+
+void OTAsetup() {
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
+  while (WiFi.waitForConnectResult() != WL_CONNECTED) {
+    delay(5000);
+    ESP.restart();
+  }
+  ArduinoOTA.begin();
+}
+
+void OTAloop() {
+  ArduinoOTA.handle();
+}
+
+void setup(){
+  OTAsetup();
+  lcd.begin(16, 2); // Initialize the LCD with 16 columns and 2 rows
+  lcd.print("1000 = 1 sec * f"); // Print the solution on the LCD
+  lcd.setCursor(0, 1); // Move to the second row
+  lcd.print("f = 1000 Hz");
+}
+
+void loop() {
+  OTAloop();
+  delay(10);  // Ensure to have a delay in loop
+}
+
+To connect the LCD display to the ESP32 DEVKIT V1, we'll use the following pin mappings:
+
+LCD Display:
+- GND: Connect to any GND pin on the ESP32 DEVKIT V1 (e.g., Right side GND or Left side GND)
+- VCC: Connect to a 5V pin on the ESP32 DEVKIT V1 (e.g., Right side 5V)
+- RS: Connect to any GPIO pin on the ESP32 DEVKIT V1 (e.g., GPIO39)
+- RW: Not used (connect to GND)
+- EN: Connect to any GPIO pin on the ESP32 DEVKIT V1 (e.g., GPIO35)
+- DB0-DB7: These are data pins. Connect to any GPIO pins on the ESP32 DEVKIT V1 (e.g., GPIO33-GPIO25)
+- LED+: Connect to a 5V pin on the ESP32 DEVKIT V1 (e.g., Right side 5V)
+- LED-: Connect to any GND pin on the ESP32 DEVKIT V1 (e.g., Right side GND or Left side GND)
+
+Ensure to connect RW to GND as it is not used in the code. Also, connect VEE (contrast control) to a suitable voltage source for proper display contrast adjustment.
+
+Here's a summary of the connections:
+- GND (LCD) -> GND (ESP32 DEVKIT V1)
+- VCC (LCD) -> 5V (ESP32 DEVKIT V1)
+- RS (LCD) -> GPIO39 (ESP32 DEVKIT V1)
+- RW (LCD) -> GND (ESP32 DEVKIT V1)
+- EN (LCD) -> GPIO35 (ESP32 DEVKIT V1)
+- DB0-> GPIO33 (ESP32 DEVKIT V1)
+- DB1-> GPIO32 (ESP32 DEVKIT V1)
+- DB2-> GPIO31 (ESP32 DEVKIT V1)
+- DB3-> GPIO30 (ESP32 DEVKIT V1)
+- DB4-> GPIO29 (ESP32 DEVKIT V1)
+- DB5-> GPIO28 (ESP32 DEVKIT V1)
+- DB6-> GPIO27 (ESP32 DEVKIT V1)
+- DB7-> GPIO26 (ESP32 DEVKIT V1)
+- LED+ (LCD) -> 5V (ESP32 DEVKIT V1)
+- LED- (LCD) -> GND (ESP32 DEVKIT V1)
+
+Ensure to cross-reference the pin numbers with the physical layout of your ESP32 DEVKIT V1 to ensure accurate connections. Additionally, adjust the contrast control (VEE) if needed for optimal display visibility.
+
+code-2:
+#include <WiFi.h>
+#include <WiFiUdp.h>
+#include <ArduinoOTA.h>
+#include <LiquidCrystal.h>
+
+#ifndef STASSID
+#define STASSID "Sunitha"  // Replace with your network credentials
+#define STAPSK  "1234567890"  
+#endif
+
+LiquidCrystal lcd(39, 35, 33, 32, 31, 30, 29, 28, 27, 26);
+
+const char* ssid = STASSID;
+const char* password = STAPSK;
+
+void OTAsetup() {
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
+  while (WiFi.waitForConnectResult() != WL_CONNECTED) {
+    delay(5000);
+    ESP.restart();
+  }
+  ArduinoOTA.begin();
+}
+
+void OTAloop() {
+  ArduinoOTA.handle();
+}
+
+void setup(){
+  OTAsetup();
+  lcd.begin(16, 2); // Initialize the LCD with 16 columns and 2 rows
+}
+
+void loop() {
+  OTAloop();
+  
+  // Clear the LCD display
+  lcd.clear();
+
+  // Print "1000" on the LCD
+  lcd.print("1000");
+
+  delay(1000); // Wait for 1 second
+}
+
+connections-2:
+- GND (LCD) -> GND (ESP32 DEVKIT V1)
+- VCC (LCD) -> 5V (ESP32 DEVKIT V1)
+- RS (LCD) -> GPIO39 (ESP32 DEVKIT V1)
+- RW (LCD) -> GND (ESP32 DEVKIT V1)
+- EN (LCD) -> GPIO35 (ESP32 DEVKIT V1)
+- DB0-> GPIO33 (ESP32 DEVKIT V1)
+- DB1-> GPIO27 (ESP32 DEVKIT V1)
+- DB2-> GPIO25 (ESP32 DEVKIT V1)
+- DB3-> GPIO23 (ESP32 DEVKIT V1)
+- DB4-> GPIO21 (ESP32 DEVKIT V1)
+- DB5-> GPIO19 (ESP32 DEVKIT V1)
+- DB6-> GPIO17 (ESP32 DEVKIT V1)
+- DB7-> GPIO15 (ESP32 DEVKIT V1)
+- LED+ (LCD) -> 5V (ESP32 DEVKIT V1)
+- LED- (LCD) -> GND (ESP32 DEVKIT V1)
+

@@ -1,0 +1,159 @@
+PROMPT-1:
+Write a simple arduino code that displays the following on a LCD Display "JHD 162A" using one arduino uno board, breadboard, jumper wires, resistor only which solves the below question and below mentioned function:
+Function:
+R1 = 0x42200000
+R2 = 0xC1200000
+R3 = R1/R2
+R3 = 0xC0800000
+Question:
+Consider three registers R1, R2, and R3 that store numbers in IEEE-754 single precision floating point format. Assume that R1 and R2 contain the values (in hexadecimal notation) 0x42200000 and 0xC1200000, respectively.
+If R3 = R1/R2 what is the value stored in R3?
+The code display the values:
+R1 = 0x42200000
+R2 = 0xC1200000
+R3 = 0xC0800000
+where the display component has the following pin labeling configuration:
+1. VSS
+2. VCC
+3. VEE
+4. RS
+5. R/W
+6. E
+7. DB0
+8. DB1
+9. DB2
+10. DB3
+11. DB4
+12. DB5
+13. DB6
+14. DB7
+15. LED+
+16. LED-
+
+PROMPT-2:
+write full code such that it performs the following task:
+R1 = 0x42200000
+R2 = 0xC1200000
+R3 = R1/R2
+R3 = 0xC0800000
+and displays R1, R2 and R3 values on display
+
+PROMPT-3:
+list out the circuit connections for the code:
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(4, 5, 6, 7, 8, 9, 10);
+
+void setup() {
+  lcd.begin(16, 2);  // Initialize the LCD with 16 columns and 2 rows
+  lcd.clear();       // Clear the LCD screen
+  
+  // Define the hexadecimal values for R1 and R2
+  float R1_hex = 0x42200000;
+  float R2_hex = 0xC1200000;
+  
+  // Convert hexadecimal values to floating-point numbers
+  float R1 = *(float*)&R1_hex;
+  float R2 = *(float*)&R2_hex;
+
+  // Perform division R3 = R1/R2
+  float R3 = R1 / R2;
+
+  // Convert R3 back to hexadecimal
+  float R3_hex = *(float*)&R3;
+
+  // Display the values on the LCD
+  lcd.print("R1 = ");
+  lcd.print(R1_hex, HEX);
+  lcd.setCursor(0, 1); // Move cursor to the second row
+  lcd.print("R2 = ");
+  lcd.print(R2_hex, HEX);
+  delay(3000);       // Wait for 3 seconds
+  lcd.clear();       // Clear the LCD screen
+  lcd.print("R3 = ");
+  lcd.print(R3_hex, HEX);
+}
+
+void loop() {
+  // Nothing to loop here
+}
+
+PROMPT-4:
+List out the circuit connections for the following code where the circuit components used will be an arduino uno board, JHD 162A LCD display, breadboard, jumper wires, resistor only without potentiometer
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(4, 5, 6, 7, 8, 9, 10);
+
+void setup() {
+  lcd.begin(16, 2);  // Initialize the LCD with 16 columns and 2 rows
+  lcd.clear();       // Clear the LCD screen
+  
+  // Define the hexadecimal values for R1 and R2
+  float R1_hex = 0x42200000;
+  float R2_hex = 0xC1200000;
+  
+  // Convert hexadecimal values to floating-point numbers
+  float R1 = *(float*)&R1_hex;
+  float R2 = *(float*)&R2_hex;
+
+  // Perform division R3 = R1/R2
+  float R3 = R1 / R2;
+
+  // Convert R3 back to hexadecimal
+  float R3_hex = *(float*)&R3;
+
+  // Display the values on the LCD
+  lcd.print("R1 = ");
+  lcd.print(R1_hex, HEX);
+  lcd.setCursor(0, 1); // Move cursor to the second row
+  lcd.print("R2 = ");
+  lcd.print(R2_hex, HEX);
+  delay(3000);       // Wait for 3 seconds
+  lcd.clear();       // Clear the LCD screen
+  lcd.print("R3 = ");
+  lcd.print(R3_hex, HEX);
+}
+
+void loop() {
+  // Nothing to loop here
+}
+
+PROMPT-5:
+modify the below code such that it performs R3 = R1/R2 and displays the values of R1, R2 and R3 on the LCD:
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(4, 5, 6, 7, 8, 9, 10);
+
+void setup() {
+  lcd.begin(16, 2);  // Initialize the LCD with 16 columns and 2 rows
+  lcd.clear();       // Clear the LCD screen
+  
+  // Define the hexadecimal values for R1 and R2
+  float R1_hex = 0x42200000;
+  float R2_hex = 0xC1200000;
+  
+  // Convert hexadecimal values to floating-point numbers
+  float R1 = *(float*)&R1_hex;
+  float R2 = *(float*)&R2_hex;
+
+  // Perform division R3 = R1/R2
+  float R3 = R1 / R2;
+
+  // Convert R3 back to hexadecimal
+  float R3_hex = *(float*)&R3;
+
+  // Display the values on the LCD
+  lcd.print("R1 = ");
+  lcd.print(R1_hex, HEX);
+  lcd.setCursor(0, 1); // Move cursor to the second row
+  lcd.print("R2 = ");
+  lcd.print(R2_hex, HEX);
+  delay(3000);       // Wait for 3 seconds
+  lcd.clear();       // Clear the LCD screen
+  lcd.print("R3 = ");
+  lcd.print(R3_hex, HEX);
+}
+
+void loop() {
+  // Nothing to loop here
+}

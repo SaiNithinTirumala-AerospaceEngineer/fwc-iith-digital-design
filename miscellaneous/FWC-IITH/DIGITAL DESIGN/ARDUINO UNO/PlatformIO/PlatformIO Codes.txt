@@ -1,0 +1,97 @@
+// Define the pins for the input and output
+#define A 2 // Input A
+#define B 3 // Input B
+#define Z 13 // Output Z
+Long Equation Code:
+// Define the pins for the inputs and output
+#define A 2 // Input A
+#define B 3 // Input B
+#define C 4 // Input C
+#define Z 13 // Output Z
+
+// Define the Boolean expression for Z
+#define Z_EXPR (A && B && !C) || (!A && B && C) || (A && !B && C)
+
+void setup() {
+  // Set the input pins as inputs with pull-up resistors
+  pinMode(A, INPUT_PULLUP);
+  pinMode(B, INPUT_PULLUP);
+  pinMode(C, INPUT_PULLUP);
+
+  // Set the output pin as output
+  pinMode(Z, OUTPUT);
+}
+
+void loop() {
+  // Read the values of the input pins
+  bool a = digitalRead(A);
+  bool b = digitalRead(B);
+  bool c = digitalRead(C);
+
+  // Evaluate the Boolean expression for Z
+  bool z = Z_EXPR;
+
+  // Write the value of Z to the output pin
+  digitalWrite(Z, high());
+
+  // Wait for half a second
+  delay(500);
+
+  // Write the opposite value of Z to the output pin
+  digitalWrite(Z, low());
+
+  // Wait for another half a second
+  delay(500);
+}
+
+
+
+Simplified Equation Code:
+void setup() {
+  // Set the input pins as inputs with pull-up resistors
+  pinMode(A, INPUT_PULLUP);
+  pinMode(B, INPUT_PULLUP);
+
+  // Set the output pin as output
+  pinMode(Z, OUTPUT);
+}
+
+void loop() {
+  // Read the values of the input pins
+  bool a = digitalRead(A);
+  bool b = digitalRead(B);
+
+  // Evaluate the Boolean expression for Z
+  bool z = (b && a) || !a;
+
+  // Write the value of Z to the output pin
+  digitalWrite(Z, z);
+}
+
+GVV Sir based Pio Run Code [main.cpp]:
+#include <Arduino.h>
+
+const int A = A7;  // Assuming A is connected to A7
+const int B = B0;  // Assuming B is connected to B0
+const int Z = 13;  // Replace 13 with the actual pin number where Z is connected
+
+void setup() {
+  // Set the input pins as inputs with pull-up resistors
+  pinMode(A, INPUT_PULLUP);
+  pinMode(B, INPUT_PULLUP);
+
+  // Set the output pin as output
+  pinMode(Z, OUTPUT);
+}
+
+void loop() {
+  // Read the values of the input pins
+  bool a = digitalRead(A);
+  bool b = digitalRead(B);
+
+  // Evaluate the Boolean expression for Z
+  bool z = (b && a) || !a;
+
+  // Write the value of Z to the output pin
+  digitalWrite(Z, z);
+}

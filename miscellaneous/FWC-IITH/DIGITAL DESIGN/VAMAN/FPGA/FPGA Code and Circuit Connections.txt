@@ -1,0 +1,244 @@
+FPGA Code [helloworldfpga.v]:
+module helloworldfpga(output reg LCD_RS,output reg LCD_E,output reg[7:4] DATA);
+
+    wire clk;
+    qlal4s3b_cell_macro u_qlal4s3b_cell_macro (
+        .Sys_Clk0 (clk),
+    ); // 20MHz clock
+    
+    integer i = 1;
+    reg [25:0] count = 0;
+    reg [3:0] Datas [1:41];
+    
+    // Variables for frequency calculation
+    integer frequency = 1000; // Hz
+    integer period = 1000000 / frequency; // 1 second in microseconds
+    
+    // Solution text
+    reg [7:0] solution[1:17] = {8'h31, 8'h30, 8'h30, 8'h30, // "1000 = 1 sec × f"
+                                 8'h20, 8'h3D, 8'h20, 8'h31, 
+                                 8'h20, 8'h73, 8'h65, 8'h63, 
+                                 8'h20, 8'hD7, 8'h78, 8'h20,
+                                 8'h66};
+    
+    initial begin
+        // Initialize data for LCD
+        // (This part remains unchanged from the original code)
+    end
+    
+    always @(posedge clk) begin
+        // Load solution text after clearing display
+        if (i == 11) begin
+            LCD_RS <= 1'b1; // Set RS for data
+            DATA <= solution[i - 10]; // Load solution data
+            LCD_E <= 1'b1;
+            if (count == 800) begin // Wait 40us
+                LCD_E <= 1'b0;
+                count <= 0;
+                i <= i + 1;
+            end else
+                count <= count + 1;
+        end else if (i > 11 && i <= 28) begin // Continue loading solution text
+            LCD_RS <= 1'b1; // Set RS for data
+            DATA <= solution[i - 10]; // Load solution data
+            LCD_E <= 1'b1;
+            if (count == 800) begin // Wait 40us
+                LCD_E <= 1'b0;
+                count <= 0;
+                i <= i + 1;
+            end else
+                count <= count + 1;
+        end else if (i == 29) begin // Wait for 3ms after displaying solution
+            if (count == 60000) begin // Wait 3ms
+                count <= 0;
+                i <= i + 1;
+            end else
+                count <= count + 1;
+        end else if (i == 30) begin // Clear display after showing solution
+            LCD_RS <= 1'b0; // Set RS for instruction
+            DATA <= 4'h1; // Clear display instruction
+            LCD_E <= 1'b1;
+            if (count == 800) begin // Wait 40us
+                LCD_E <= 1'b0;
+                count <= 0;
+                i <= i + 1;
+            end else
+                count <= count + 1;
+        end else if (i > 30 && i <= 41) begin // Continue clearing display
+            LCD_RS <= 1'b0; // Set RS for instruction
+            DATA <= 4'h1; // Clear display instruction
+            LCD_E <= 1'b1;
+            if (count == 800) begin // Wait 40us
+                LCD_E <= 1'b0;
+                count <= 0;
+                i <= i + 1;
+            end else
+                count <= count + 1;
+        end else if (i > 41) begin // Reset loop counter
+            i <= 1;
+        end else begin // Load remaining initialization data for LCD
+            // (This part remains unchanged from the original code)
+        end
+    end
+
+endmodule
+
+Circuit Connections [quickfeather.pcf]:
+# QuickFeather FPGA Pin Constraint File
+
+# Clock signal
+set_io -nowarn CLK pin_A4
+
+# LCD RS, E, and DATA pins
+set_io -nowarn LCD_RS pin_B2
+set_io -nowarn LCD_E pin_B1
+set_io -nowarn DATA[7] pin_C2
+set_io -nowarn DATA[6] pin_C1
+set_io -nowarn DATA[5] pin_C4
+set_io -nowarn DATA[4] pin_C3
+
+FPGA Code - 1 [helloworldfpga.v]:
+module helloworldfpga(
+    output reg LCD_RS,
+    output reg LCD_E,
+    output reg[7:4] DATA
+);
+
+    wire clk;
+    qlal4s3b_cell_macro u_qlal4s3b_cell_macro (
+        .Sys_Clk0 (clk),
+    ); // 20MHz clock
+    
+    integer i = 1;
+    reg [25:0] count = 0;
+    reg [3:0] Datas [1:41];
+    
+    // Solution text for "f = 1000 Hz"
+    reg [7:0] solution[1:11] = {8'h66, 8'h20, 8'h3D, 8'h20, 8'h31, 8'h30, 8'h30, 8'h30, 8'h20, 8'h48, 8'h7A};
+    
+    initial begin
+        // Initialize data for LCD
+        // (This part remains unchanged from the original code)
+    end
+    
+    always @(posedge clk) begin
+        // Load solution text after clearing display
+        if (i == 11) begin
+            LCD_RS <= 1'b1; // Set RS for data
+            DATA <= solution[i - 10]; // Load solution data
+            LCD_E <= 1'b1;
+            if (count == 800) begin // Wait 40us
+                LCD_E <= 1'b0;
+                count <= 0;
+                i <= i + 1;
+            end else
+                count <= count + 1;
+        end else if (i > 11 && i <= 20) begin // Continue loading solution text
+            LCD_RS <= 1'b1; // Set RS for data
+            DATA <= solution[i - 10]; // Load solution data
+            LCD_E <= 1'b1;
+            if (count == 800) begin // Wait 40us
+                LCD_E <= 1'b0;
+                count <= 0;
+                i <= i + 1;
+            end else
+                count <= count + 1;
+        end else if (i == 21) begin // Wait for 3ms after displaying solution
+            if (count == 60000) begin // Wait 3ms
+                count <= 0;
+                i <= i + 1;
+            end else
+                count <= count + 1;
+        end else if (i == 22) begin // Clear display after showing solution
+            LCD_RS <= 1'b0; // Set RS for instruction
+            DATA <= 4'h1; // Clear display instruction
+            LCD_E <= 1'b1;
+            if (count == 800) begin // Wait 40us
+                LCD_E <= 1'b0;
+                count <= 0;
+                i <= i + 1;
+            end else
+                count <= count + 1;
+        end else if (i > 22 && i <= 41) begin // Continue clearing display
+            LCD_RS <= 1'b0; // Set RS for instruction
+            DATA <= 4'h1; // Clear display instruction
+            LCD_E <= 1'b1;
+            if (count == 800) begin // Wait 40us
+                LCD_E <= 1'b0;
+                count <= 0;
+                i <= i + 1;
+            end else
+                count <= count + 1;
+        end else if (i > 41) begin // Reset loop counter
+            i <= 1;
+        end else begin // Load remaining initialization data for LCD
+            // (This part remains unchanged from the original code)
+        end
+    end
+
+endmodule
+
+Circuit Connections - 1 [quickfeather.pcf]:
+# QuickFeather FPGA Pin Constraint File
+
+# Clock signal
+set_io -nowarn CLK pin_A4
+
+# LCD RS, E, and DATA pins
+set_io -nowarn LCD_RS pin_B2
+set_io -nowarn LCD_E pin_B1
+set_io -nowarn DATA[7] pin_C2
+set_io -nowarn DATA[6] pin_C1
+set_io -nowarn DATA[5] pin_C4
+set_io -nowarn DATA[4] pin_C3
+
+Arduino UNO Code:
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(4, 5, 6, 7, 8, 9, 10);
+
+void setup() {
+  lcd.begin(16, 2);  // Initialize the LCD with 16 columns and 2 rows
+  lcd.clear();       // Clear the LCD screen
+  
+  // Define the frequency value
+  int frequency = 1000; // Frequency in Hertz
+  
+  // Display the frequency on the LCD
+  lcd.print("f = ");
+  lcd.print(frequency);
+  lcd.print(" Hz");
+}
+
+void loop() {
+  // Nothing to loop here
+}
+
+ARDUINO CIRCUIT CONNECTIONS:
+1. **LCD Display Pins:**
+   - RS to Arduino pin 4
+   - RW to Arduino pin 5
+   - E to Arduino pin 6
+   - D4 to Arduino pin 7
+   - D5 to Arduino pin 8
+   - D6 to Arduino pin 9
+   - D7 to Arduino pin 10
+   - VSS to GND (Ground)
+   - VCC to 5V (Power)
+   - VEE (Contrast) is connected directly to GND (No potentiometer)
+   - LED+ to 5V through a current-limiting resistor (e.g., 220 ohms)
+   - LED- to GND (Ground)
+
+2. **Arduino Uno to Breadboard:**
+   - Connect Arduino GND (Ground) to the breadboard's ground rail.
+   - Connect Arduino 5V to the breadboard's positive rail.
+
+3. **Backlight Resistor:**
+   - Connect one leg of the resistor to LED+ pin of the LCD.
+   - Connect the other leg of the resistor to 5V rail on the breadboard.
+
+4. **LCD Contrast Adjustment (VEE):**
+   - Since you're not using a potentiometer, directly connect VEE pin of the LCD to GND.
+
+Ensure the connections are secure and correct. With this setup, your Arduino Uno should be able to control the LCD display and show the values of R1, R2, and R3 as per the provided code.
+

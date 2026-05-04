@@ -1,0 +1,151 @@
+C++ Code [General]:
+// define the pin number for the LED
+#define LED_PIN 13
+
+// define the time interval for each state in milliseconds
+#define TIME_INTERVAL 1000
+
+void setup() {
+  // initialize the LED pin as an output
+  pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+  // turn the LED on for state 00
+  digitalWrite(LED_PIN, HIGH);
+  // wait for one second
+  delay(TIME_INTERVAL);
+  // turn the LED off for state 10
+  digitalWrite(LED_PIN, LOW);
+  // wait for one second
+  delay(TIME_INTERVAL);
+  // turn the LED on for state 01
+  digitalWrite(LED_PIN, HIGH);
+  // wait for one second
+  delay(TIME_INTERVAL);
+  // turn the LED off for state 11
+  digitalWrite(LED_PIN, LOW);
+  // wait for one second
+  delay(TIME_INTERVAL);
+}
+
+AVR-GCC Libraries Included Code:
+#include <avr/io.h>
+#include <util/delay.h>
+
+// Define the pin number for the LED
+#define LED_PIN 13
+
+// Define the time interval for each state in milliseconds
+#define TIME_INTERVAL 1000
+
+void setup() {
+  // Set the LED pin as an output
+  DDRB |= (1 << DDB5);
+}
+
+void loop() {
+  // Turn the LED on for state 00
+  PORTB |= (1 << PORTB5);
+  // Wait for one second
+  _delay_ms(TIME_INTERVAL);
+  // Turn the LED off for state 10
+  PORTB &= ~(1 << PORTB5);
+  // Wait for one second
+  _delay_ms(TIME_INTERVAL);
+  // Turn the LED on for state 01
+  PORTB |= (1 << PORTB5);
+  // Wait for one second
+  _delay_ms(TIME_INTERVAL);
+  // Turn the LED off for state 11
+  PORTB &= ~(1 << PORTB5);
+  // Wait for one second
+  _delay_ms(TIME_INTERVAL);
+}
+
+int main(void) {
+  setup();
+
+  while (1) {
+    loop();
+  }
+
+  return 0;
+}
+
+WITH TWO LEDs:
+C++ Code:
+// Define the digital pins for the LEDs
+const int ledPin1 = 2; // Digital pin 2 for LED 1
+const int ledPin2 = 3; // Digital pin 3 for LED 2
+
+void setup() {
+  // Set pin modes
+  pinMode(ledPin1, OUTPUT);
+  pinMode(ledPin2, OUTPUT);
+}
+
+void loop() {
+  // Sequence: 00
+  digitalWrite(ledPin1, LOW);
+  digitalWrite(ledPin2, LOW);
+  delay(1000); // 1 second delay
+  
+  // Sequence: 10
+  digitalWrite(ledPin1, HIGH);
+  digitalWrite(ledPin2, LOW);
+  delay(1000); // 1 second delay
+  
+  // Sequence: 01
+  digitalWrite(ledPin1, LOW);
+  digitalWrite(ledPin2, HIGH);
+  delay(1000); // 1 second delay
+  
+  // Sequence: 11
+  digitalWrite(ledPin1, HIGH);
+  digitalWrite(ledPin2, HIGH);
+  delay(1000); // 1 second delay
+  
+  // Sequence: 00 (Reset)
+  digitalWrite(ledPin1, LOW);
+  digitalWrite(ledPin2, LOW);
+  delay(1000); // 1 second delay
+}
+AVR-GCC Code:
+#include <avr/io.h>
+#include <util/delay.h>
+
+// Define the pins for the LEDs
+#define LED_PIN1 PB2 // Digital pin 2 for LED 1
+#define LED_PIN2 PB3 // Digital pin 3 for LED 2
+
+int main(void) {
+    // Set pins as output
+    DDRB |= (1 << LED_PIN1) | (1 << LED_PIN2);
+
+    while (1) {
+        // Sequence: 00
+        PORTB &= ~((1 << LED_PIN1) | (1 << LED_PIN2));
+        _delay_ms(1000); // 1 second delay
+
+        // Sequence: 10
+        PORTB |= (1 << LED_PIN1);
+        PORTB &= ~(1 << LED_PIN2);
+        _delay_ms(1000); // 1 second delay
+
+        // Sequence: 01
+        PORTB &= ~(1 << LED_PIN1);
+        PORTB |= (1 << LED_PIN2);
+        _delay_ms(1000); // 1 second delay
+
+        // Sequence: 11
+        PORTB |= (1 << LED_PIN1) | (1 << LED_PIN2);
+        _delay_ms(1000); // 1 second delay
+
+        // Sequence: 00 (Reset)
+        PORTB &= ~((1 << LED_PIN1) | (1 << LED_PIN2));
+        _delay_ms(1000); // 1 second delay
+    }
+
+    return 0;
+}
