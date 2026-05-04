@@ -1,0 +1,24 @@
+# Build artifacts
+*.elf
+*.o
+*.obj
+*.eep
+*.map
+*.lst
+
+# PlatformIO
+.pio/
+.pioenvs/
+
+# MacOS
+.DS_Store
+
+# Symbiflow build outputs
+*.log
+*.fasm
+*.bit
+*.json
+*.sdc
+*.place
+*.route
+*.net
