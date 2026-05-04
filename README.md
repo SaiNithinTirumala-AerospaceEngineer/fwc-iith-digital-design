@@ -4,7 +4,7 @@
 
 # One Problem. Thirteen Platforms. Zero Compromises.
 
-**The same GATE-level digital design question — solved, compiled, and hardware-verified**  
+**The same GATE-level digital design question - solved, compiled, and hardware-verified**  
 **across 13 different platforms using a single Android phone.**
 
 <br>
@@ -35,15 +35,15 @@
 > This is not a tutorial project. This is not a simulation.  
 > Every result here was produced on **real physical hardware**, compiled on a **phone**, flashed over **USB OTG or WiFi**, and photographed or recorded as proof.
 
-A single question from the **GATE 2022** examination paper was taken and solved end-to-end on **13 different hardware and software platforms** — from the highest abstraction (Arduino C++) to the lowest (AVR register-level assembly), through FPGA fabric synthesis, ARM Cortex-M4 firmware, and wireless OTA deployment.
+A single question from the **GATE 2022** examination paper was taken and solved end-to-end on **13 different hardware and software platforms** - from the highest abstraction (Arduino C++) to the lowest (AVR register-level assembly), through FPGA fabric synthesis, ARM Cortex-M4 firmware, and wireless OTA deployment.
 
-The entire development pipeline — writing, compiling, flashing, debugging — was executed **exclusively on an Android smartphone** using Termux, Neovim, and ArduinoDroid.
+The entire development pipeline - writing, compiling, flashing, debugging - was executed **exclusively on an Android smartphone** using Termux, Neovim, and ArduinoDroid.
 
 This demonstrates:
-- **Depth** — from Arduino to bare-metal to FPGA to ARM RTOS
-- **Breadth** — 13 platforms, 6 languages, 4 toolchains, 2 hardware families
-- **Rigour** — 65 output recordings, 9 hardware photos, zero simulations
-- **Ingenuity** — full professional dev environment built on a phone
+- **Depth** - from Arduino to bare-metal to FPGA to ARM RTOS
+- **Breadth** - 13 platforms, 6 languages, 4 toolchains, 2 hardware families
+- **Rigour** - 65 output recordings, 9 hardware photos, zero simulations
+- **Ingenuity** - full professional dev environment built on a phone
 
 ---
 
@@ -53,8 +53,8 @@ This demonstrates:
 |:---|:---|
 | **Name** | Tirumala Sai Nithin |
 | **Employee ID** | FWC22187 |
-| **Institution** | IIT Hyderabad — Future Wireless Communications (FWC) |
-| **Supervisor** | Prof. G. V. V. Sharma — Associate Professor, Dept. of Electrical Engineering |
+| **Institution** | IIT Hyderabad - Future Wireless Communications (FWC) |
+| **Supervisor** | Prof. G. V. V. Sharma - Associate Professor, Dept. of Electrical Engineering |
 | **Internship** | Advanced 5G/6G Wireless Communications · Module 1 · Dec 2023 – Mar 2024 |
 | **Current** | MSc Aerospace Engineering · University of Bristol · Class of 2026 |
 | **Target roles** | Airbus · BAE Systems · Rolls-Royce · avionics & embedded systems |
@@ -63,7 +63,7 @@ This demonstrates:
 
 ## The GATE Question <a name="gate-question"></a>
 
-### Problem 1 — IEEE-754 Floating Point Arithmetic
+### Problem 1 - IEEE-754 Floating Point Arithmetic
 
 > **GATE 2022:** Consider three registers R1, R2, and R3 storing numbers in IEEE-754 single-precision floating-point format. R1 = `0x42200000`, R2 = `0xC1200000`. If R3 = R1 ÷ R2, what is the value stored in R3?
 
@@ -75,7 +75,7 @@ Implemented across **digital-design**, **FPGA**, **ARM**, **ESP32**, and all oth
 
 ---
 
-### Problem 2 — Boolean Function via Multiplexer
+### Problem 2 - Boolean Function via Multiplexer
 
 $$F(X,\, Y,\, Z,\, W) = \sum m(0,\, 1,\, 3,\, 11,\, 14)$$
 
@@ -89,7 +89,7 @@ $$F = \overline{X}\,\overline{Z} + YZ \quad \text{(verified on 7-segment, LED, L
 
 ---
 
-### Problem 3 — Counter Circuit Analysis (GATE IN 2022, Q46)
+### Problem 3 - Counter Circuit Analysis (GATE IN 2022, Q46)
 
 3-bit feedback shift register: $Q_0^{n+1} = \overline{Q_2^n}$, $Q_1^{n+1} = Q_0^n$, $Q_2^{n+1} = Q_1^n$
 
@@ -105,18 +105,18 @@ $$\text{State sequence: } 000 \to 001 \to 011 \to 111 \to 110 \to 100 \to 000$$
 
 | # | Platform | Language | Toolchain | Output | Lines of Code |
 |:-:|:---------|:---------|:----------|:-------|:-------------:|
-| 1 | [**Digital Design — IEEE-754**](arduino-uno/digital-design/) | Arduino C++ | Arduino IDE | LCD JHD162A | ~60 |
-| 2 | [**Seven Segment — Direct Drive**](arduino-uno/seven-segment/) | Arduino C++ | Arduino IDE | 7-Seg (7 pins) | ~150 |
-| 3 | [**7447 IC — BCD Decoder**](arduino-uno/7447/) | Arduino C++ | Arduino IDE | 7-Seg via IC | ~25 |
-| 4 | [**K-Map — Boolean Minimisation**](arduino-uno/k-map/) | Arduino C++ | Arduino IDE | 7-Seg via 7447 | ~35 |
-| 5 | [**7474 IC — D Flip-Flop**](arduino-uno/7474/) | Arduino C++ | Arduino IDE | 7-Seg (sequential) | ~55 |
+| 1 | [**Digital Design - IEEE-754**](arduino-uno/digital-design/) | Arduino C++ | Arduino IDE | LCD JHD162A | ~60 |
+| 2 | [**Seven Segment - Direct Drive**](arduino-uno/seven-segment/) | Arduino C++ | Arduino IDE | 7-Seg (7 pins) | ~150 |
+| 3 | [**7447 IC - BCD Decoder**](arduino-uno/7447/) | Arduino C++ | Arduino IDE | 7-Seg via IC | ~25 |
+| 4 | [**K-Map - Boolean Minimisation**](arduino-uno/k-map/) | Arduino C++ | Arduino IDE | 7-Seg via 7447 | ~35 |
+| 5 | [**7474 IC - D Flip-Flop**](arduino-uno/7474/) | Arduino C++ | Arduino IDE | 7-Seg (sequential) | ~55 |
 | 6 | [**AVR Assembly**](arduino-uno/assembly/) | ATmega328P ASM | AVRA assembler | LED pin 13 | ~35 |
-| 7 | [**AVR-GCC — Bare Metal C**](arduino-uno/avr-gcc/) | C (no HAL) | avr-gcc + Make | LED sequence | ~60 |
+| 7 | [**AVR-GCC - Bare Metal C**](arduino-uno/avr-gcc/) | C (no HAL) | avr-gcc + Make | LED sequence | ~60 |
 | 8 | [**PlatformIO**](arduino-uno/platformio/) | Arduino C++ | PlatformIO CLI | LED via Boolean | ~30 |
 | 9 | [**Finite State Machine**](arduino-uno/finite-state-machine/) | Arduino C++ | Arduino IDE | 7-Seg (FSM) | ~70 × 3 |
 | 10 | [**GATE On Arduino**](arduino-uno/gate-on-arduino/) | Arduino C++ | Arduino IDE | LED Q0/Q1/Q2 | ~60 |
-| 11 | [**ESP32 / VAMAN — Wireless OTA**](vaman/esp32/) | C++ (ESP-IDF) | PlatformIO + OTA | LED via WiFi | ~80 × 3 |
-| 12 | [**FPGA / VAMAN — Verilog**](vaman/fpga/) | Verilog HDL | ql_symbiflow | LCD JHD162A | ~120 |
+| 11 | [**ESP32 / VAMAN - Wireless OTA**](vaman/esp32/) | C++ (ESP-IDF) | PlatformIO + OTA | LED via WiFi | ~80 × 3 |
+| 12 | [**FPGA / VAMAN - Verilog**](vaman/fpga/) | Verilog HDL | ql_symbiflow | LCD JHD162A | ~120 |
 | 13 | [**ARM Cortex-M4**](arm/) | C (FreeRTOS) | arm-none-eabi-gcc | RGB LEDs | ~90 |
 | + | [**LaTeX**](latex/) | LaTeX | pdflatex (Termux) | PDF documents | ~180 |
 
@@ -180,7 +180,7 @@ $$\text{State sequence: } 000 \to 001 \to 011 \to 111 \to 110 \to 100 \to 000$$
 </tr>
 </table>
 
-> 📹 **65 recordings** in [`outputs/`](outputs/) — hardware demos, Neovim workflows, LaTeX compilation, FPGA flash sequences.
+> 📹 **65 recordings** in [`outputs/`](outputs/) - hardware demos, Neovim workflows, LaTeX compilation, FPGA flash sequences.
 
 ---
 
@@ -206,9 +206,9 @@ Phone
 ```
 
 **Reference documents** in [`docs/`](docs/):
-- [`nvim_shortcut_keys.pdf`](docs/nvim_shortcut_keys.pdf) — 2-page Neovim command reference
-- [`nvim_and_arduinodroid_usage_notes.txt`](docs/nvim_and_arduinodroid_usage_notes.txt) — terminal commands per platform
-- [`pin_lists.txt`](docs/pin_lists.txt) — LCD JHD162A + ESP32 DEVKIT V1 complete pin lists
+- [`nvim_shortcut_keys.pdf`](docs/nvim_shortcut_keys.pdf) - 2-page Neovim command reference
+- [`nvim_and_arduinodroid_usage_notes.txt`](docs/nvim_and_arduinodroid_usage_notes.txt) - terminal commands per platform
+- [`pin_lists.txt`](docs/pin_lists.txt) - LCD JHD162A + ESP32 DEVKIT V1 complete pin lists
 
 ---
 
@@ -221,7 +221,7 @@ float R1 = *(float*)&R1_hex;  // reinterpret hex bits as IEEE-754 float → +40.
 float R3 = R1 / R2;           // -4.0 = 0xC0800000
 ```
 
-### AVR Assembly — NOR Gate (ATmega328P registers)
+### AVR Assembly - NOR Gate (ATmega328P registers)
 ```asm
 SBI  DDRB, 5         ; PB5 (pin 13) = OUTPUT
 IN   r16, PIND       ; read port D (inputs)
@@ -240,7 +240,7 @@ OUT  PORTB, r16      ; write to pin 13
 RJMP start
 ```
 
-### FPGA Verilog — LCD State Machine (QuickLogic EOS-S3)
+### FPGA Verilog - LCD State Machine (QuickLogic EOS-S3)
 ```verilog
 module helloworldfpga(output reg LCD_RS, output reg LCD_E, output reg[7:4] DATA);
     wire clk;
@@ -250,7 +250,7 @@ module helloworldfpga(output reg LCD_RS, output reg LCD_E, output reg[7:4] DATA)
     // 4-bit nibble mode | 800 clock cycles (40µs) per LCD enable strobe
 ```
 
-### ARM Cortex-M4 — FreeRTOS Truth Table (VAMAN board)
+### ARM Cortex-M4 - FreeRTOS Truth Table (VAMAN board)
 ```c
 int truth_table[] = {0, 1, 3, 11, 14};  // Σm(0,1,3,11,14)
 for (int i = 0; i < num_entries; i++) {
@@ -262,7 +262,7 @@ for (int i = 0; i < num_entries; i++) {
 }
 ```
 
-### ESP32 Wireless OTA — Boolean Function over WiFi
+### ESP32 Wireless OTA - Boolean Function over WiFi
 ```cpp
 void loop() {
     ArduinoOTA.handle();               // listen for OTA push
@@ -295,7 +295,7 @@ Pin 15 LED+ → 5V via 220Ω      Pin 16 LED- → GND
 7447 Pin 8  (GND)   → GND
 ```
 
-### VAMAN ESP32 — Wired Upload Circuit (Arduino as UART bridge)
+### VAMAN ESP32 - Wired Upload Circuit (Arduino as UART bridge)
 ```
 Arduino RST  ────────────────── VAMAN RST
 Arduino TX   ──[1KΩ]──[1KΩ]──  VAMAN RX    (voltage divider: 5V→3.3V)
@@ -355,7 +355,7 @@ fwc-iith-digital-design/
 
 ---
 
-## Skills Demonstrated — For Recruiters
+## Skills Demonstrated
 
 <table>
 <thead>
@@ -364,17 +364,17 @@ fwc-iith-digital-design/
 <tbody>
 <tr>
 <td><strong>Embedded C / C++</strong></td>
-<td>Arduino IDE, AVR-GCC, PlatformIO, ESP32, ARM Cortex-M4 — 6 separate C/C++ implementations</td>
+<td>Arduino IDE, AVR-GCC, PlatformIO, ESP32, ARM Cortex-M4 - 6 separate C/C++ implementations</td>
 <td>Avionics software, flight control firmware</td>
 </tr>
 <tr>
 <td><strong>Assembly Language</strong></td>
-<td>ATmega328P NOR + NAND gates in AVR assembly — direct register manipulation, no HAL</td>
+<td>ATmega328P NOR + NAND gates in AVR assembly - direct register manipulation, no HAL</td>
 <td>Safety-critical systems, DO-178C low-level</td>
 </tr>
 <tr>
 <td><strong>FPGA / RTL Design</strong></td>
-<td>Verilog LCD state machine on QuickLogic EOS-S3 — synthesis, P&R, flash</td>
+<td>Verilog LCD state machine on QuickLogic EOS-S3 - synthesis, P&R, flash</td>
 <td>Avionics FPGA (Xilinx, Altera), radar DSP</td>
 </tr>
 <tr>
@@ -384,12 +384,12 @@ fwc-iith-digital-design/
 </tr>
 <tr>
 <td><strong>RTOS / Systems Programming</strong></td>
-<td>FreeRTOS on ARM Cortex-M4 — task scheduling, GPIO HAL, UART debug</td>
+<td>FreeRTOS on ARM Cortex-M4 - task scheduling, GPIO HAL, UART debug</td>
 <td>Flight management computers, embedded RTOS</td>
 </tr>
 <tr>
 <td><strong>Wireless / IoT</strong></td>
-<td>ESP32 WiFi OTA — ArduinoOTA library, hotspot deployment, IP verification</td>
+<td>ESP32 WiFi OTA - ArduinoOTA library, hotspot deployment, IP verification</td>
 <td>5G/6G embedded systems, connected avionics</td>
 </tr>
 <tr>
@@ -404,7 +404,7 @@ fwc-iith-digital-design/
 </tr>
 <tr>
 <td><strong>Resource Constraint Development</strong></td>
-<td>Full embedded dev stack on Android phone — Termux, Neovim, no PC</td>
+<td>Full embedded dev stack on Android phone - Termux, Neovim, no PC</td>
 <td>Field deployment, resource-constrained environments</td>
 </tr>
 </tbody>
@@ -416,12 +416,12 @@ fwc-iith-digital-design/
 
 This work was completed as **Module 1 (Data Handling & Hardware Programming)** of the FWC programme at IIT Hyderabad.
 
-- **IIT Hyderabad CCE Certificate** — Module-1, December 2023 – February 2024
-- **FWC Internship Completion Certificate** — signed by Prof. GVV Sharma, 29 March 2024
-- **Full 70-page internship report** — [`docs/internship-report/`](docs/internship-report/)
+- **IIT Hyderabad CCE Certificate** - Module-1, December 2023 – February 2024
+- **FWC Internship Completion Certificate** - signed by Prof. GVV Sharma, 29 March 2024
+- **Full 70-page internship report** - [`docs/internship-report/`](docs/internship-report/)
 
 > *"He is extremely sincere and hardworking."*  
-> — Prof. G. V. V. Sharma, Program Coordinator, IIT Hyderabad
+> - Prof. G. V. V. Sharma, Program Coordinator, IIT Hyderabad
 
 ---
 
@@ -437,25 +437,6 @@ This work was completed as **Module 1 (Data Handling & Hardware Programming)** o
 | LaTeX recordings | 9 | Mathematical typesetting on smartphone |
 | Documentation files | 6 | Methodology, pin lists, Neovim reference |
 | **Total** | **111+** | **No simulations. No screenshots. Real hardware.** |
-
----
-
-## GitHub Repository Settings
-
-```
-Repository name : fwc-iith-digital-design
-
-Description     : One GATE question solved across 13 platforms — Arduino, AVR Assembly,
-                  AVR-GCC, PlatformIO, FSM, FPGA Verilog, ARM Cortex-M4, ESP32 OTA,
-                  LaTeX — built entirely on Android · IIT Hyderabad FWC Internship 2024
-
-Website         : https://github.com/SaiNithinTirumala-AerospaceEngineer
-
-Topics (add all 20):
-  arduino  embedded-systems  avr-assembly  fpga  verilog  arm-cortex-m4
-  esp32  platformio  digital-design  finite-state-machine  iit-hyderabad
-  gate  avr-gcc  latex  7447  7474  neovim  termux  freertos  bare-metal
-```
 
 ---
 
