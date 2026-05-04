@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{circuitikz}
+
+% FWC IITH – LaTeX: GATE IN 2022 Question Paper (Digital Circuits)
+% Author: Tirumala Sai Nithin | FWC22187 | IIT Hyderabad
+% Toolchain: pdflatex via Termux Debian (Neovim on Android)
+% Build: pdflatex gate_in_2022.tex → termux-open gate_in_2022.pdf
+
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+
+\begin{document}
+
+\begin{center}
+\textbf{GATE - IN 2022}\\
+TIRUMALA SAI NITHIN\\
+December 2023
+\end{center}
+
+\begin{enumerate}
+
+\item The digital circuit shown in \figref{fig:GATEIN202236}
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figs/GATEIN202236.png}
+\caption{GATE IN 2022 Digital Circuit}
+\label{fig:GATEIN202236}
+\end{figure}
+\begin{enumerate}
+\item is a divide-by-$5$ counter
+\item is a divide-by-$7$ counter
+\item is a divide-by-$8$ counter
+\item does not function as a counter due to disjoint cycles of states
+\end{enumerate}
+\hfill(GATE-IN-2022)
+
+\end{enumerate}
+
+\textbf{Solution:}\\
+The circuit implements a 3-bit LFSR-style shift register with feedback:
+\[
+Q_0^{n+1} = \overline{Q_2^n}, \quad Q_1^{n+1} = Q_0^n, \quad Q_2^{n+1} = Q_1^n
+\]
+State sequence: $000 \to 001 \to 011 \to 111 \to 110 \to 100 \to 000$\\
+Five unique states $\Rightarrow$ \textbf{Divide-by-5 counter (Option A)}
+
+\end{document}
