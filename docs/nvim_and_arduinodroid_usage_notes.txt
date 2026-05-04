@@ -1,0 +1,49 @@
+NVIM and ARDUINODROID Usage Notes:
+
+NVIM Commands while Screen Recording of Process:
+
+Latex:
+-> proot-distro login debian
+-> clear
+-> nvim
+-> ALT + O
+-> Navigate to the code file and click "ENTER"
+-> CTRL + ALT + C
+-> proot-distro login debian
+-> cd /sdcard
+-> pdflatex file_name.tex
+-> termux-open file_name.pdf
+
+AVR-GCC:
+-> proot-distro login debian
+-> clear
+-> nvim
+-> ALT + O
+-> Navigate to the code file and click "ENTER"
+-> CTRL + ALT + C
+-> proot-distro login debian
+-> ranger
+-> NAvigate to the SRC folder 
+-> SHIFT + S
+-> make (click "ENTER") 
+
+ASSEMBLY:
+-> proot-distro login debian
+-> clear
+-> nvim
+-> ALT + O
+-> Navigate to the code file and click "ENTER"
+-> CTRL + ALT + C
+-> proot-distro login debian
+-> cd /sdcard/assembly
+-> avra file_name.asm 
+
+Dumping .Hex file in ARDUINODROID:
+-> Open ArduinoDroid
+-> Click on 3 dots in the extreme right at the top
+-> Click on actions
+-> Click on upload
+-> click on Precompiled
+-> Navigate to the .hex file location
+-> Select the file
+-> click on tick mark
