@@ -1,0 +1,16 @@
+# FWC IITH – VAMAN FPGA Pin Constraints
+# Platform: QuickLogic EOS-S3 (VAMAN board)
+# Author: Tirumala Sai Nithin | Employee ID: FWC22187
+
+# QuickFeather FPGA Pin Constraint File
+
+# Clock signal
+set_io -nowarn CLK pin_A4
+
+# LCD RS, E, and DATA pins
+set_io -nowarn LCD_RS pin_B2
+set_io -nowarn LCD_E pin_B1
+set_io -nowarn DATA[7] pin_C2
+set_io -nowarn DATA[6] pin_C1
+set_io -nowarn DATA[5] pin_C4
+set_io -nowarn DATA[4] pin_C3
